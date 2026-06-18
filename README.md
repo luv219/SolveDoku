@@ -1,42 +1,70 @@
 # SolveDoku
 
-SolveDoku is a responsive Sudoku solver and game web app built with React, TypeScript, Tailwind CSS, Vite, and React Router. It is frontend-only, uses no backend or database, and is designed as a portfolio-ready demonstration of UI architecture, state management, accessibility, and algorithmic problem solving.
+A polished, frontend-only Sudoku solver and game app built with React, TypeScript, Vite, Tailwind CSS, and React Router.
 
-## Live Demo
+SolveDoku combines a clean responsive interface with real Sudoku algorithms: board validation, a recursive backtracking solver, solution counting, randomized puzzle generation, notes mode, hints, mistakes, timer, dark mode, and local progress persistence.
 
-Coming soon.
+## Project Links
 
-## GitHub Repository
+- Live demo: Coming soon
+- GitHub repository: Coming soon
+- Screenshots: Coming soon after deployment
 
-Coming soon.
+## Portfolio Summary
 
-## Screenshots
+Built a responsive Sudoku solver and game web app using React, TypeScript, Tailwind CSS, and Vite. Implemented board validation, a backtracking solver, unique-solution puzzle generation, notes mode, timer, hints, mistakes, localStorage persistence, dark mode, and responsive UI.
 
-Screenshots will be added after deployment.
+## Highlights
+
+- Frontend-only React app with no backend and no database
+- Strict TypeScript models for boards, cells, validation, generation, and game state
+- Interactive 9x9 Sudoku board with keyboard navigation
+- Solver page with validation, no-solution detection, and multiple-solution warning
+- Play page with generated puzzles, timer, mistakes, notes, hints, reset, check, and solution reveal
+- Unique-solution puzzle generation using solution counting
+- Dark mode with persisted user preference
+- Saved Play progress with safe localStorage recovery
+- Responsive layout for mobile, tablet, and desktop
+- Accessible status messages, cell labels, focus states, and disabled states
 
 ## Features
 
-- Responsive landing page, Solver, Play, How It Works, and About pages
-- Interactive 9x9 Sudoku board
-- Keyboard navigation with arrow keys
+### Solver
+
 - Manual puzzle input
+- Arrow-key board navigation
+- Backspace/Delete clearing
 - Row, column, and 3x3 box validation
-- Backtracking solver
-- No-solution detection
+- Invalid cell highlighting
+- Backtracking solve action
+- No-solution feedback
 - Multiple-solution warning
-- Randomized solved board generation
-- Unique-solution puzzle generation
+- Example puzzle loading
+- Clear and reset controls
+
+### Play Mode
+
+- Random puzzle generation
 - Difficulty levels: Easy, Medium, Hard, Expert
-- Play mode timer
+- Locked original/given cells
+- Editable empty cells
+- Timer
 - Mistake counter and game-over state
-- Hint button with difficulty-based limits
 - Notes mode with candidate rendering
-- Check and Show Solution controls
-- Wrong-cell highlighting
+- Limited hints by difficulty
+- Check button with wrong-cell highlighting
+- Show Solution action
+- Completion detection
+- Saved progress restore
+
+### UX And Polish
+
+- Responsive board scaling
+- Mobile-friendly controls
 - Dark mode toggle
 - Persisted theme preference
-- Persisted Play progress with safe localStorage recovery
-- Accessible status messages and focus states
+- Accessible message system
+- Portfolio-ready Home, How It Works, and About pages
 
 ## Tech Stack
 
@@ -45,18 +73,19 @@ Screenshots will be added after deployment.
 - Vite
 - Tailwind CSS
 - React Router
-- localStorage for non-sensitive preferences and Play progress
-- Frontend-only architecture
+- localStorage for non-sensitive preferences and game progress
 
 ## Pages
 
-- Home: product-style overview, CTAs, and engineering highlights
-- Solver: manual board input, validation, solution counting, and solving
-- Play: generated puzzle gameplay with timer, notes, hints, mistakes, and persistence
-- How It Works: concise algorithm and feature explanation
-- About: project purpose, stack, portfolio value, and engineering notes
+| Route | Purpose |
+| --- | --- |
+| `/` | Landing page with CTAs and engineering highlights |
+| `/solver` | Manual puzzle input, validation, solution counting, and solving |
+| `/play` | Generated Sudoku gameplay with timer, notes, hints, and persistence |
+| `/how-it-works` | Concise explanation of Sudoku rules and algorithms |
+| `/about` | Project purpose, stack, portfolio value, and engineering highlights |
 
-## Algorithms
+## Algorithms And Logic
 
 - Board shape validation
 - Duplicate detection for rows, columns, and boxes
@@ -66,24 +95,68 @@ Screenshots will be added after deployment.
 - Randomized solved board generation
 - Difficulty-based clue removal
 - Unique-solution checking for generated puzzles
+- Game-state checks for mistakes, hints, completion, and reveal state
 
-## Local Setup
+## Getting Started
 
 ```bash
 npm install
 npm run dev
 ```
 
-## Production Build
+The app will run locally with Vite.
+
+## Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
+## Project Structure
+
+```text
+src/
+  components/   Shared UI and Sudoku board components
+  data/         Sample puzzle data
+  hooks/        Timer, theme, and keyboard behavior
+  pages/        Route-level pages
+  types/        Sudoku and app state types
+  utils/        Board, validation, solver, generator, difficulty, and storage logic
+```
+
+Key files:
+
+- `src/utils/validator.ts`: board validation and valid move checks
+- `src/utils/solver.ts`: backtracking solver and solution counter
+- `src/utils/generator.ts`: solved board and puzzle generation
+- `src/pages/Solver.tsx`: solver workflow
+- `src/pages/Play.tsx`: game workflow
+- `src/hooks/useTimer.ts`: timer lifecycle
+- `src/hooks/useTheme.ts`: dark mode preference
+- `src/utils/storage.ts`: safe localStorage helpers
+
+## Testing
+
+Manual QA checklist: [TESTING.md](./TESTING.md)
+
+Coverage areas:
+
+- Routes and navigation
+- Solver validation and solving
+- Puzzle generation
+- Play mode interactions
+- Notes, hints, mistakes, timer, and completion
+- Dark mode
+- localStorage restore
+- Mobile responsiveness
+- Accessibility basics
+
 ## Deployment
 
-SolveDoku builds as a static site. Recommended hosts:
+Deployment guide: [DEPLOYMENT.md](./DEPLOYMENT.md)
+
+SolveDoku builds as a static site and can be deployed to:
 
 - Vercel
 - Netlify
@@ -91,43 +164,12 @@ SolveDoku builds as a static site. Recommended hosts:
 
 No environment variables are required.
 
-## Project Structure
+## Current Limitations
 
-```text
-src/
-  components/
-  data/
-  hooks/
-  pages/
-  types/
-  utils/
-```
-
-Key files:
-
-- `src/utils/validator.ts`: board validation
-- `src/utils/solver.ts`: backtracking solver and solution counter
-- `src/utils/generator.ts`: solved board and puzzle generation
-- `src/pages/Solver.tsx`: solver workflow
-- `src/pages/Play.tsx`: game workflow
-- `src/hooks/useTimer.ts`: timer behavior
-- `src/hooks/useTheme.ts`: dark mode preference
-- `src/utils/storage.ts`: safe localStorage helpers
-
-## Testing Checklist
-
-See [TESTING.md](./TESTING.md) for the full manual QA checklist.
-
-Core checks:
-
-- All routes load
-- Solver validates and solves valid puzzles
-- Solver blocks empty, invalid, unsolvable, and multiple-solution cases correctly
-- Play generates puzzles for every difficulty
-- Play notes, hints, timer, mistakes, reset, check, completion, and solution reveal work
-- Dark mode persists after reload
-- Saved Play progress restores safely
-- Mobile layout remains usable
+- No automated test suite yet
+- Difficulty is based on clue ranges, not human solving techniques
+- Hints fill values but do not explain solving steps
+- Screenshots and live demo links are pending deployment
 
 ## Future Improvements
 
@@ -139,8 +181,4 @@ Core checks:
 - Candidate auto-fill
 - PWA support
 - Mobile app version
-- User accounts and leaderboard as optional future backend-backed features
-
-## Portfolio Summary
-
-Built a responsive Sudoku solver and game web app using React, TypeScript, Tailwind CSS, and Vite. Implemented board validation, a backtracking solver, unique-solution puzzle generation, notes mode, timer, hints, mistakes, localStorage persistence, dark mode, and responsive UI.
+- Optional backend-backed accounts and leaderboard
